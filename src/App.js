@@ -10,6 +10,11 @@ import {
 import { updateFilter } from "./redux/filter/filterActions";
 import { useDispatch, useSelector } from "react-redux";
 import contactsSelectors from "./redux/contactsSelector";
+import { PublicRoute, PrivateRoute } from "./components/Routes";
+import HomePage from "./pages/home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Contacts from "./pages/Contacts";
 
 function App() {
   const contacts = useSelector(contactsSelectors.getContacts);
@@ -37,6 +42,21 @@ function App() {
 
   return (
     <div className="App">
+      <nav></nav>
+
+      <PublicRoute path="/" exact>
+        <HomePage />
+      </PublicRoute>
+      <PublicRoute path="/register" exact restricted>
+        <Register />
+      </PublicRoute>
+      <PublicRoute path="/login" exact restricted>
+        <Login />
+      </PublicRoute>
+      <PrivateRoute path="/contacts" exact>
+        <Contacts />
+      </PrivateRoute>
+
       <h1>Phonebook</h1>
       <Form onSubmit={onContactAdd} />
       {filteredContacts.length > 0 && (
