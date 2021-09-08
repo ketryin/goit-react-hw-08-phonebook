@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../redux/auth/authOperations";
+import authSelectors from "../../redux/authSelector";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const error = useSelector(authSelectors.authError);
 
   const dispatch = useDispatch();
 
@@ -62,6 +65,7 @@ function LoginForm() {
           </button>
         </form>
       </div>
+      {error && <div> Error : {error} </div>}
     </div>
   );
 }

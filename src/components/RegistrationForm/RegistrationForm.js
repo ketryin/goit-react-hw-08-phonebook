@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { register } from "../../redux/auth/authOperations";
 import "./RegistrationForm.css";
+import authSelectors from "../../redux/authSelector";
 
 function RegistrationForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const error = useSelector(authSelectors.authError);
 
   const dispatch = useDispatch();
 
@@ -81,6 +84,7 @@ function RegistrationForm() {
             Register
           </button>
         </form>
+        {error && <div> Error : {error} </div>}
       </div>
     </div>
   );

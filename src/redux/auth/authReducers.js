@@ -20,9 +20,9 @@ const isAuthorized = createReducer(false, {
 });
 
 const authError = createReducer(null, {
-  [authActions.registerError]: () => "Error",
-  [authActions.loginError]: () => "Error",
-  [authActions.logoutError]: () => "Error",
+  [authActions.registerError]: (_, { payload }) => payload,
+  [authActions.loginError]: (_, { payload }) => payload,
+  [authActions.logoutError]: (_, { payload }) => payload,
 });
 
 const authReducers = combineReducers({

@@ -14,7 +14,7 @@ async function executeRequestAsync(url, options = {}, token) {
   }
 
   throw new Error(
-    `Contacts API failed with status ${response.statusText} during executing request.`
+    `API failed with status ${response.statusText} during executing request.`
   );
 }
 
