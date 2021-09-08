@@ -34,7 +34,7 @@ export function logIn(user) {
 
 export function logOut(token) {
   return executeRequestAsync(
-    `${BASE_URL}/users/login`,
+    `${BASE_URL}/users/logout`,
     { method: "POST" },
     token
   );

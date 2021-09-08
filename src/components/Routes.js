@@ -3,7 +3,7 @@ import { Redirect, Route } from "react-router-dom";
 import authSelectors from "../redux/authSelector";
 
 export function PrivateRoute({ children, ...routeProps }) {
-  const isAuthenticated = useSelector(authSelectors.isAuthenticated);
+  const isAuthenticated = useSelector(authSelectors.isAuthorized);
   return (
     <Route {...routeProps}>
       {isAuthenticated ? children : <Redirect to="/login" />}
@@ -12,7 +12,7 @@ export function PrivateRoute({ children, ...routeProps }) {
 }
 
 export function PublicRoute({ children, restricted = false, ...routeProps }) {
-  const isAuthenticated = useSelector(authSelectors.isAuthenticated);
+  const isAuthenticated = useSelector(authSelectors.isAuthorized);
   const shouldRedirect = restricted && isAuthenticated;
   return (
     <Route {...routeProps}>

@@ -1,48 +1,43 @@
-import { useEffect } from "react";
-import Form from "./components/Form";
-import ContactsList from "./components/ContactsList";
-import Filter from "./components/Filter";
-import {
-  getContacts,
-  addContact,
-  removeContact,
-} from "./redux/items/contactsOperations";
-import { updateFilter } from "./redux/filter/filterActions";
-import { useDispatch, useSelector } from "react-redux";
-import contactsSelectors from "./redux/contactsSelector";
+import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { PublicRoute, PrivateRoute } from "./components/Routes";
-import HomePage from "./pages/home";
+import HomePage from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Contacts from "./pages/Contacts";
+import authSelectors from "./redux/authSelector";
+import { logout } from "./redux/auth/authOperations";
 
 function App() {
-  const contacts = useSelector(contactsSelectors.getContacts);
-  const filteredContacts = useSelector(contactsSelectors.getFilteredContacts);
-  const filter = useSelector(contactsSelectors.getFilter);
+  const isAuthorized = useSelector(authSelectors.isAuthorized);
+  const authToken = useSelector(authSelectors.authToken);
 
   const dispatch = useDispatch();
 
-  const onContactAdd = (contact) => {
-    if (
-      contacts.find((c) => c.name.toLowerCase() === contact.name.toLowerCase())
-    ) {
-      alert("Error! Can not add existing contact.");
-      return;
-    }
-
-    dispatch(addContact(contact));
+  const onLogOut = () => {
+    dispatch(logout(authToken));
   };
-  const onFilterUpdate = (value) => dispatch(updateFilter(value));
-  const onContactDelete = (id) => dispatch(removeContact(id));
-
-  useEffect(() => {
-    dispatch(getContacts());
-  }, [dispatch]);
 
   return (
     <div className="App">
-      <nav></nav>
+      <nav>
+        {!isAuthorized && (
+          <NavLink to="/login">
+            <div>Login</div>
+          </NavLink>
+        )}
+        {!isAuthorized && (
+          <NavLink to="/register">
+            <div>Register</div>
+          </NavLink>
+        )}
+        {isAuthorized && (
+          <NavLink to="/contacts">
+            <div>Contacts</div>
+          </NavLink>
+        )}
+        {isAuthorized && <button onClick={onLogOut}>Log Out</button>}
+      </nav>
 
       <PublicRoute path="/" exact>
         <HomePage />
@@ -56,23 +51,6 @@ function App() {
       <PrivateRoute path="/contacts" exact>
         <Contacts />
       </PrivateRoute>
-
-      <h1>Phonebook</h1>
-      <Form onSubmit={onContactAdd} />
-      {filteredContacts.length > 0 && (
-        <>
-          <h1>Contacts</h1>
-          <Filter
-            filter={filter}
-            handleFilter={(e) => onFilterUpdate(e.currentTarget.value)}
-          />
-          <ContactsList
-            filter={filter}
-            contacts={filteredContacts}
-            onDeleteContact={onContactDelete}
-          />
-        </>
-      )}
     </div>
   );
 }
