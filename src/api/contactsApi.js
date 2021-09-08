@@ -40,10 +40,6 @@ export function logOut(token) {
   );
 }
 
-export function currentUser(token) {
-  return executeRequestAsync(`${BASE_URL}/users/current`, {}, token);
-}
-
 export function fetchContacts(token) {
   return executeRequestAsync(`${BASE_URL}/contacts`, {}, token);
 }
@@ -60,14 +56,11 @@ export function createContact(contact, token) {
 }
 
 export function deleteContact(id, token) {
-  return executeRequestAsync(`${BASE_URL}/contacts/${id}`, token, {
-    method: "DELETE",
-  });
-}
-
-export function updateContact(id, token, contact) {
-  return executeRequestAsync(`${BASE_URL}/contacts/${id}`, token, {
-    method: "PATCH",
-    body: JSON.stringify(contact),
-  });
+  return executeRequestAsync(
+    `${BASE_URL}/contacts/${id}`,
+    {
+      method: "DELETE",
+    },
+    token
+  );
 }

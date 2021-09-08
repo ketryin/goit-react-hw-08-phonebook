@@ -16,13 +16,13 @@ function Contacts() {
   const contacts = useSelector(contactsSelectors.getContacts);
   const filteredContacts = useSelector(contactsSelectors.getFilteredContacts);
   const filter = useSelector(contactsSelectors.getFilter);
-  const authToken = useSelector(authSelectors.authToken);
+  const token = useSelector(authSelectors.authToken);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getContacts(authToken));
-  }, [authToken, dispatch]);
+    dispatch(getContacts(token));
+  }, [token, dispatch]);
 
   const onContactAdd = (contact) => {
     if (
@@ -32,11 +32,11 @@ function Contacts() {
       return;
     }
 
-    dispatch(addContact({ contact, authToken }));
+    dispatch(addContact({ contact, token }));
   };
 
   const onFilterUpdate = (value) => dispatch(updateFilter(value));
-  const onContactDelete = (id) => dispatch(removeContact({ id, authToken }));
+  const onContactDelete = (id) => dispatch(removeContact({ id, token }));
 
   return (
     <div>

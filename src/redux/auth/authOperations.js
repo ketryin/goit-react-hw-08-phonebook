@@ -1,5 +1,5 @@
 import * as actions from "./authActions";
-import { signUp, logIn, logOut, currentUser } from "../../api/contactsApi";
+import { signUp, logIn, logOut } from "../../api/contactsApi";
 
 export const register = (user) => (dispatch) => {
   dispatch(actions.registerPending());
@@ -23,12 +23,4 @@ export const logout = (token) => (dispatch) => {
   return logOut(token)
     .then((_) => dispatch(actions.logoutSuccess()))
     .catch((error) => dispatch(actions.logoutError(error.message)));
-};
-
-export const getCurrentUser = (token) => (dispatch) => {
-  dispatch(actions.currentUserPending());
-
-  return getCurrentUser(token)
-    .then((user) => dispatch(actions.currentUserSuccess(user)))
-    .catch((error) => dispatch(actions.currentUserError(error.message)));
 };
