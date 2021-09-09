@@ -40,6 +40,10 @@ export function logOut(token) {
   );
 }
 
+export function currentUser(token) {
+  return executeRequestAsync(`${BASE_URL}/users/current`, {}, token);
+}
+
 export function fetchContacts(token) {
   return executeRequestAsync(`${BASE_URL}/contacts`, {}, token);
 }
