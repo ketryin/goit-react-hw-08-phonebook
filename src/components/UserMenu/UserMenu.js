@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import authSelectors from "../../redux/authSelector";
 import { logout } from "../../redux/auth/authOperations";
+import "./UserMenu.css";
 
 function UserMenu() {
   const isAuthorized = useSelector(authSelectors.isAuthorized);
@@ -13,24 +14,33 @@ function UserMenu() {
   const onLogOut = () => dispatch(logout(authToken));
 
   return (
-    <nav>
-      {!isAuthorized && (
-        <NavLink to="/login">
-          <div>Login</div>
-        </NavLink>
-      )}
-      {!isAuthorized && (
-        <NavLink to="/register">
-          <div>Register</div>
-        </NavLink>
-      )}
+    <nav className="nav">
+      <div className="conteinerNav">
+        {!isAuthorized && (
+          <NavLink to="/login">
+            <div className="navElement">Login</div>
+          </NavLink>
+        )}
+        {!isAuthorized && (
+          <NavLink to="/register">
+            <div className="navElement">Register</div>
+          </NavLink>
+        )}
+        {isAuthorized && (
+          <NavLink to="/contacts">
+            <div className="navElement">Contacts</div>
+          </NavLink>
+        )}
+        {isAuthorized && (
+          <button onClick={onLogOut} className="navElement btnLogOut">
+            Log Out
+          </button>
+        )}
+      </div>
+
       {isAuthorized && (
-        <NavLink to="/contacts">
-          <div>Contacts</div>
-        </NavLink>
+        <h1 className="userName">Email : {currentUser.email}</h1>
       )}
-      {isAuthorized && <h1>Email : {currentUser.email}</h1>}
-      {isAuthorized && <button onClick={onLogOut}>Log Out</button>}
     </nav>
   );
 }

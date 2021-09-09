@@ -38,7 +38,7 @@ function RegistrationForm() {
           >
             <span className="labelInput">Email</span>
             <input
-              className="input"
+              className="inputLogin"
               type="email"
               name="username"
               placeholder="Enter email"
@@ -54,7 +54,7 @@ function RegistrationForm() {
           >
             <span className="labelInput">Username</span>
             <input
-              className="input"
+              className="inputLogin"
               type="text"
               name="username"
               placeholder="Enter username"
@@ -70,7 +70,7 @@ function RegistrationForm() {
           >
             <span className="labelInput">Password</span>
             <input
-              className="input"
+              className="inputLogin"
               type="password"
               name="pass"
               placeholder="Enter password"

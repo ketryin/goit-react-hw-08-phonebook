@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../redux/auth/authOperations";
 import authSelectors from "../../redux/authSelector";
+import "./LoginForm.css";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -24,9 +25,7 @@ function LoginForm() {
     <div className="registrationForm">
       <div className="containerRegistrationForm">
         <div className="wrapLoginTitle">
-          <div className="loginTitleImg">
-            <span className="loginTitle">Login</span>
-          </div>
+          <span className="loginTitle">Login</span>
         </div>
         <form className="loginForm">
           <div
@@ -35,7 +34,7 @@ function LoginForm() {
           >
             <span className="labelInput">Email</span>
             <input
-              className="input"
+              className="inputLogin"
               type="email"
               name="username"
               placeholder="Enter email"
@@ -50,7 +49,7 @@ function LoginForm() {
           >
             <span className="labelInput">Password</span>
             <input
-              className="input"
+              className="inputLogin"
               type="password"
               name="pass"
               placeholder="Enter password"
@@ -59,7 +58,6 @@ function LoginForm() {
             />
             <span className="focusInput"></span>
           </div>
-
           <button className="loginBtn" onClick={onRegisterClick}>
             Login
           </button>

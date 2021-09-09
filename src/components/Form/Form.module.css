@@ -5,8 +5,14 @@
 }
 .btn {
   width: 90px;
-  padding: 0 2px;
+  padding: 2px 4px;
   margin-top: 10px;
+
+  background-color: rgb(146, 181, 255);
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  cursor: pointer;
 }
 .input {
   margin-left: 10px;

@@ -1,0 +1,44 @@
+.loginForm {
+  width: 100%;
+}
+.registrationForm {
+  padding: 15px 70px;
+}
+.wrapLoginTitle {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.loginBtn {
+  display: block;
+  width: 120px;
+  margin-left: auto;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: rgb(146, 181, 255);
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+}
+.wrapInput {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.inputLogin {
+  font-size: 15px;
+  width: 100%;
+  color: #555;
+  background: transparent;
+  padding: 0 5px;
+  border: none;
+  border-bottom: 1px solid #b2b2b2;
+}
+.labelInput {
+  margin-right: 20px;
+  min-width: 70px;
+}

@@ -7,9 +7,15 @@
 .btn {
   display: inline-flex;
   margin-left: auto;
-  padding: 0 2px;
+  padding: 0 6px;
 
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+
+  background-color: rgb(146, 181, 255);
+  border: none;
+  border-radius: 25px;
+  color: #fff;
   cursor: pointer;
 }
