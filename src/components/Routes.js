@@ -12,10 +12,10 @@ export function PrivateRoute({ children, ...routeProps }) {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    if (token) {
+    if (token && !isAuthenticated) {
       dispatch(getCurrentUser(token));
     }
-  }, [dispatch]);
+  }, [isAuthenticated, dispatch]);
 
   return (
     <Route {...routeProps}>
@@ -33,14 +33,14 @@ export function PublicRoute({ children, restricted = false, ...routeProps }) {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    if (token) {
+    if (token && !isAuthenticated) {
       dispatch(getCurrentUser(token));
     }
-  }, [dispatch]);
+  }, [isAuthenticated, dispatch]);
 
   return (
     <Route {...routeProps}>
-      {shouldRedirect ? <Redirect to="/" /> : children}
+      {shouldRedirect ? <Redirect to="/contacts" /> : children}
     </Route>
   );
 }
